@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ghost-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ghost-deploy
+  template:
+    metadata:
+      labels:
+        app: ghost-deploy
+    spec:
+      containers:
+      - name: ghost-deploy
+        image: ghost
+        resources: {}  # No resource limit
+        env:
+          - name: NODE_ENV
+            value: development
+          - name: url
+            value: http://localhost:2368
+        ports:
+        - containerPort: 2368
