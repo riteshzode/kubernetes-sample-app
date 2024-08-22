@@ -8,4 +8,4 @@ spec:
   ports:
   - port: 2368
     targetPort: 2368
-  type: LoadBalancer
+ # type: LoadBalancer
