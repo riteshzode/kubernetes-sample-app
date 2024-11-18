@@ -56,5 +56,18 @@ We can all multiple data by using post request
 Next, retrieve the data by using a new CURL request
    ```bash
    curl http://<loadbalnacer-ip>
-  ```
+   ```
 Replace <loadbalnacer-ip> with the external IP address of the service from the previous step.
+
+## Access Mysql pod
+
+You can use the kubectl exec command to get into the MySQL pod 
+
+pod name : mysql-deployment-1234 
+
+passowrd of DB : password
+
+
+   ```bash
+   kubectl exec -it mysql-deployment-pod-name -- mysql -u root -p
+  ```
