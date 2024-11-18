@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-mysql-aks
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springboot-mysql-aks
+  template:
+    metadata:
+      labels:
+        app: springboot-mysql-aks
+    spec:
+      containers:
+      - name: springboot-mysql-aks
+        image: riteshzode/mysqlaks-sample
+        env:
+        - name: DATABASE_HOST
+          value: mysql-service  # MySQL service (CluserIP)
+        - name: DATABASE_USERNAME
+          value: "root"
+        - name: DATABASE_PASSWORD
+          value: "password"
+        - name: DATABASE_NAME    
+          value: "demo"  # MySQL database name
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: springboot-mysql-aks
+spec:
+  ports:
+  - port: 8080
+    targetPort: 8080
+  selector:
+    app: springboot-mysql-aks
